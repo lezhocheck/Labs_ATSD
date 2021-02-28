@@ -5,7 +5,7 @@ class Node
     public int data;
     public Node nextNode;
 
-    Node(int data)
+    public Node(int data)
     {
         this.data = data;
         nextNode = null;
@@ -13,12 +13,19 @@ class Node
 }
 class LinkedList
 {
-    LinkedList()
-    {
+    private Node headList;
+    private int count;
 
+    public LinkedList()
+    {
+        headList = null;
+        count = 0;
     }
-    ~LinkedList()
+    public void AddItem(int item)
     {
-
+        Node node = new Node(item);
+        node.nextNode = headList;
+        headList = node;
+        count++;
     }
 }
