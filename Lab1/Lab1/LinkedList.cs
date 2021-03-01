@@ -41,6 +41,10 @@ class LinkedList
         }
         count++;
     }
+    public bool IsEmpty()
+    {
+        return count == 0 ? true : false;
+    }
     public void Print()
     {
         Node temp = headList;
