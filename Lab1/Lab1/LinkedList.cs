@@ -45,6 +45,10 @@ class LinkedList
     {
         return count == 0 ? true : false;
     }
+    public int Size()
+    {
+        return count;
+    }
     public void Print()
     {
         Node temp = headList;
