@@ -69,7 +69,7 @@ class LinkedList
         }
         return result;
     }
-    public int GetItem(int index)
+    public int GetItemByIndex(int index)
     {
         Node temp = headList;
         int indexer = 0;
@@ -88,6 +88,39 @@ class LinkedList
             temp = temp.nextNode;
         }
         Console.WriteLine("Invalid index.");
+        return Int32.MinValue;
+    }
+    public int DeleteItem(int item)
+    {
+        if (SearchItem(item))
+        {
+            Node temp = headList;
+            Node next = headList.nextNode;
+            if(temp.data == item && next != null)
+            {
+                headList = next;
+                return item;
+            }
+            else if(temp.data == item && next == null)
+            {
+                headList = null;
+                count = 0;
+                return item;
+            }
+            do
+            {
+                if (next.data == item)
+                {
+                    temp.nextNode = next.nextNode;
+                    break;
+                }
+                temp = temp.nextNode;
+                next = temp.nextNode;
+            } while (next != null && temp.data != item);
+            count--;
+            return item;
+        }
+        Console.WriteLine("List does not contain element '" + item + "'.");
         return Int32.MinValue;
     }
     public void Print()
