@@ -111,6 +111,7 @@ class LinkedList<T> where T : IComparable
             if(temp.data.CompareTo(item) == 0 && next != null)
             {
                 headList = next;
+                count--;
                 return item;
             }
             else if(temp.data.CompareTo(item) == 0 && next == null)
