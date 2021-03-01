@@ -1,19 +1,19 @@
 ﻿using System;
 
-class Node 
+class Node<T> 
 {
-    public int data;
-    public Node nextNode;
+    public T data;
+    public Node<T> nextNode;
 
-    public Node(int data)
+    public Node(T data)
     {
         this.data = data;
         nextNode = null;
     }
 }
-class LinkedList
+class LinkedList<T> where T : IComparable
 {
-    private Node headList;
+    private Node<T> headList;
     private int count;
 
     public LinkedList()
@@ -21,18 +21,18 @@ class LinkedList
         headList = null;
         count = 0;
     }
-    public void AddItem(int item)
+    public void AddItem(T item)
     {
-        Node temp = headList;
-        Node node = new Node(item);
-        if(headList == null || headList.data >= item)
+        Node<T> temp = headList;
+        Node<T> node = new Node<T>(item);
+        if(headList == null || headList.data.CompareTo(item) >= 0)
         {
             headList = node;
             headList.nextNode = temp;
         }
         else
         {
-            while(temp.nextNode != null && temp.nextNode.data < item)
+            while(temp.nextNode != null && headList.data.CompareTo(item) < 0)
             {
                 temp = temp.nextNode;
             }
@@ -54,13 +54,13 @@ class LinkedList
         headList = null;
         count = 0;
     }
-    public bool SearchItem(int item)
+    public bool SearchItem(T item)
     {
         bool result = false;
-        Node temp = headList;
+        Node<T> temp = headList;
         while(temp != null)
         {
-            if(temp.data == item)
+            if(temp.data.CompareTo(item) == 0)
             {
                 result = true;
                 break;
@@ -69,14 +69,14 @@ class LinkedList
         }
         return result;
     }
-    public int GetItemByIndex(int index)
+    public T GetItemByIndex(int index)
     {
-        Node temp = headList;
+        Node<T> temp = headList;
         int indexer = 0;
         if (index < 0 || index >= count)
         {
             Console.WriteLine("Invalid index.");
-            return Int32.MinValue;
+            return default(T);
         }
         while(temp != null)
         {
@@ -88,20 +88,20 @@ class LinkedList
             temp = temp.nextNode;
         }
         Console.WriteLine("Invalid index.");
-        return Int32.MinValue;
+        return default(T);
     }
-    public int DeleteItem(int item)
+    public T DeleteItem(T item)
     {
         if (SearchItem(item))
         {
-            Node temp = headList;
-            Node next = headList.nextNode;
-            if(temp.data == item && next != null)
+            Node<T> temp = headList;
+            Node<T> next = headList.nextNode;
+            if(temp.data.CompareTo(item) == 0 && next != null)
             {
                 headList = next;
                 return item;
             }
-            else if(temp.data == item && next == null)
+            else if(temp.data.CompareTo(item) == 0 && next == null)
             {
                 headList = null;
                 count = 0;
@@ -109,23 +109,23 @@ class LinkedList
             }
             do
             {
-                if (next.data == item)
+                if (next.data.CompareTo(item) == 0)
                 {
                     temp.nextNode = next.nextNode;
                     break;
                 }
                 temp = temp.nextNode;
                 next = temp.nextNode;
-            } while (next != null && temp.data != item);
+            } while (next != null && temp.data.CompareTo(item) != 0);
             count--;
             return item;
         }
         Console.WriteLine("List does not contain element '" + item + "'.");
-        return Int32.MinValue;
+        return default(T);
     }
     public void Print()
     {
-        Node temp = headList;
+        Node<T> temp = headList;
         while(temp != null)
         {
             Console.Write(temp.data + " ");
