@@ -28,4 +28,13 @@ class LinkedList
         headList = node;
         count++;
     }
+    public void Print()
+    {
+        Node temp = headList;
+        while(temp != null)
+        {
+            Console.Write(temp.data + " ");
+            temp = temp.nextNode;
+        }
+    }
 }
