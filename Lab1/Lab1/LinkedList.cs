@@ -23,9 +23,22 @@ class LinkedList
     }
     public void AddItem(int item)
     {
+        Node temp = headList;
         Node node = new Node(item);
-        node.nextNode = headList;
-        headList = node;
+        if(headList == null || headList.data >= item)
+        {
+            headList = node;
+            headList.nextNode = temp;
+        }
+        else
+        {
+            while(temp.nextNode != null && temp.nextNode.data < item)
+            {
+                temp = temp.nextNode;
+            }
+            node.nextNode = temp.nextNode;
+            temp.nextNode = node;
+        }
         count++;
     }
     public void Print()
