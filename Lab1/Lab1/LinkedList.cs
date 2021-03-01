@@ -54,6 +54,21 @@ class LinkedList
         headList = null;
         count = 0;
     }
+    public bool SearchItem(int item)
+    {
+        bool result = false;
+        Node temp = headList;
+        while(temp != null)
+        {
+            if(temp.data == item)
+            {
+                result = true;
+                break;
+            }
+            temp = temp.nextNode;
+        }
+        return result;
+    }
     public void Print()
     {
         Node temp = headList;
