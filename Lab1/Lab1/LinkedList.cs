@@ -49,6 +49,11 @@ class LinkedList
     {
         return count;
     }
+    public void MakeEmpty()
+    {
+        headList = null;
+        count = 0;
+    }
     public void Print()
     {
         Node temp = headList;
