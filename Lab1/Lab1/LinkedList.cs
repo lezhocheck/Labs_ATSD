@@ -73,6 +73,14 @@ class LinkedList<T> where T : IComparable
     {
         return headList;
     }
+    public bool SearchItem(Node<T> node, int item)
+    {
+        if (node == null)
+            return false;
+        if (node.data.CompareTo(item) == 0)
+            return true;
+        return SearchItem(node.nextNode, item);
+    }
     public T GetItemByIndex(int index)
     {
         Node<T> temp = headList;
