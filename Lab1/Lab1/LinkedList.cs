@@ -69,6 +69,27 @@ class LinkedList
         }
         return result;
     }
+    public int GetItem(int index)
+    {
+        Node temp = headList;
+        int indexer = 0;
+        if (index < 0 || index >= count)
+        {
+            Console.WriteLine("Invalid index.");
+            return Int32.MinValue;
+        }
+        while(temp != null)
+        {
+            if(indexer == index)
+            {
+                return temp.data;
+            }
+            indexer++;
+            temp = temp.nextNode;
+        }
+        Console.WriteLine("Invalid index.");
+        return Int32.MinValue;
+    }
     public void Print()
     {
         Node temp = headList;
@@ -77,5 +98,6 @@ class LinkedList
             Console.Write(temp.data + " ");
             temp = temp.nextNode;
         }
+        Console.Write("\n");
     }
 }
