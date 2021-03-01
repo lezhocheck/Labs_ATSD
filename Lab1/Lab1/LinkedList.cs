@@ -69,6 +69,10 @@ class LinkedList<T> where T : IComparable
         }
         return result;
     }
+    public Node<T> GetListHead()
+    {
+        return headList;
+    }
     public T GetItemByIndex(int index)
     {
         Node<T> temp = headList;
