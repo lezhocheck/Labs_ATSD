@@ -2,90 +2,96 @@
 
 class Node<T> 
 {
-    public T data;
-    public Node<T> nextNode;
+    public T Data { get; }
+    public Node<T> NextNode { get; set; }
 
     public Node(T data)
     {
-        this.data = data;
-        nextNode = null;
+        this.Data = data;
+        NextNode = null;
     }
 }
 class LinkedList<T> where T : IComparable
 {
-    private Node<T> headList;
-    private int count;
+    public Node<T> Head { get; private set; }
+    public int Size { get; private set; }
 
     public LinkedList()
     {
-        headList = null;
-        count = 0;
+        Head = null;
+        Size = 0;
     }
+    public LinkedList(params T[] input) 
+    {
+        Array.Sort(input);
+        Size = input.Length;
+        Node<T> temp = new Node<T>(input[0]);
+        Head = temp;
+        for (int i = 1; i < Size; i++)
+        {
+            Node<T> tt = temp;
+            temp = new Node<T>(input[i]);
+            tt.NextNode = temp;
+        }
+    }
+    
     public void AddItem(T item)
     {
-        Node<T> temp = headList;
+        Node<T> temp = Head;
         Node<T> node = new Node<T>(item);
-        if(headList == null || headList.data.CompareTo(item) >= 0)
+        if(Head == null || Head.Data.CompareTo(item) > 0)
         {
-            headList = node;
-            headList.nextNode = temp;
+            Head = node;
+            Head.NextNode = temp;
         }
         else
         {
-            while(temp.nextNode != null && headList.data.CompareTo(item) < 0)
+            while(temp.NextNode != null && temp.Data.CompareTo(item) < 0)
             {
-                temp = temp.nextNode;
+                temp = temp.NextNode;
             }
-            node.nextNode = temp.nextNode;
-            temp.nextNode = node;
+            node.NextNode = temp.NextNode;
+            temp.NextNode = node;
         }
-        count++;
+        Size++;
     }
     public bool IsEmpty()
     {
-        return count == 0 ? true : false;
-    }
-    public int Size()
-    {
-        return count;
+        return Size == 0;
     }
     public void MakeEmpty()
     {
-        headList = null;
-        count = 0;
+        Head = null;
+        Size = 0;
     }
     public bool SearchItem(T item)
     {
         bool result = false;
-        Node<T> temp = headList;
+        Node<T> temp = Head;
         while(temp != null)
         {
-            if(temp.data.CompareTo(item) == 0)
+            if(temp.Data.CompareTo(item) == 0)
             {
                 result = true;
                 break;
             }
-            temp = temp.nextNode;
+            temp = temp.NextNode;
         }
         return result;
-    }
-    public Node<T> GetListHead()
-    {
-        return headList;
     }
     public bool SearchItem(Node<T> node, int item)
     {
         if (node == null)
             return false;
-        if (node.data.CompareTo(item) == 0)
+        if (node.Data.CompareTo(item) == 0)
             return true;
-        return SearchItem(node.nextNode, item);
+        return SearchItem(node.NextNode, item);
     }
     public T GetItemByIndex(int index)
     {
-        Node<T> temp = headList;
+        Node<T> temp = Head;
         int indexer = 0;
-        if (index < 0 || index >= count)
+        if (index < 0 || index >= Size)
         {
             Console.WriteLine("Invalid index.");
             return default(T);
@@ -94,10 +100,10 @@ class LinkedList<T> where T : IComparable
         {
             if(indexer == index)
             {
-                return temp.data;
+                return temp.Data;
             }
             indexer++;
-            temp = temp.nextNode;
+            temp = temp.NextNode;
         }
         Console.WriteLine("Invalid index.");
         return default(T);
@@ -106,43 +112,43 @@ class LinkedList<T> where T : IComparable
     {
         if (SearchItem(item))
         {
-            Node<T> temp = headList;
-            Node<T> next = headList.nextNode;
-            if(temp.data.CompareTo(item) == 0 && next != null)
+            Node<T> temp = Head;
+            Node<T> next = Head.NextNode;
+            if(temp.Data.CompareTo(item) == 0 && next != null)
             {
-                headList = next;
-                count--;
+                Head = next;
+                Size--;
                 return item;
             }
-            else if(temp.data.CompareTo(item) == 0 && next == null)
+            else if(temp.Data.CompareTo(item) == 0 && next == null)
             {
-                headList = null;
-                count = 0;
+                Head = null;
+                Size = 0;
                 return item;
             }
             do
             {
-                if (next.data.CompareTo(item) == 0)
+                if (next.Data.CompareTo(item) == 0)
                 {
-                    temp.nextNode = next.nextNode;
+                    temp.NextNode = next.NextNode;
                     break;
                 }
-                temp = temp.nextNode;
-                next = temp.nextNode;
-            } while (next != null && temp.data.CompareTo(item) != 0);
-            count--;
+                temp = temp.NextNode;
+                next = temp.NextNode;
+            } while (next != null && temp.Data.CompareTo(item) != 0);
+            Size--;
             return item;
         }
         Console.WriteLine("List does not contain element '" + item + "'.");
-        return default(T);
+        return default;
     }
     public void Print()
     {
-        Node<T> temp = headList;
+        Node<T> temp = Head;
         while(temp != null)
         {
-            Console.Write(temp.data + " ");
-            temp = temp.nextNode;
+            Console.Write(temp.Data + " ");
+            temp = temp.NextNode;
         }
         Console.Write("\n");
     }
