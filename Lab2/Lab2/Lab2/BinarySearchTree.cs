@@ -47,7 +47,29 @@ namespace Lab2
                 return SearchRec(item, r.LNode);
             else
                 return SearchRec(item, r.RNode);
-        }  
+        }
+
+        public int DeleteItem(int item)
+        {
+            if (Search(item))
+            {
+                root = DeleteItemRec(item, root);
+                return root.Data;
+            }
+
+            Console.WriteLine("Item was not deleted.");
+            return Int32.MinValue;
+        }
+
+        private Node DeleteItemRec(int item, Node r)
+        {
+            if (r.Data == item)
+                return r;
+            if (r.Data < item)
+                return DeleteItemRec(item, r.LNode);
+            else
+                return DeleteItemRec(item, r.RNode);
+        }
         
         private Node AddItemRec(int item, Node r)
         {
@@ -58,13 +80,9 @@ namespace Lab2
             }
 
             if (item < r.Data)
-            {
                 return AddItemRec(item, r.LNode);
-            }
             else
-            {
                 return AddItemRec(item, r.RNode);
-            }
         }
     }
 }
