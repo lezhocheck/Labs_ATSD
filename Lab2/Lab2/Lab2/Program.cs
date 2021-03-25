@@ -17,9 +17,11 @@ namespace Lab2
             bst.AddItem(13);
             bst.AddItem(55);
             bst.AddItem(14);
+            bst.DeleteItem(10);
             Console.WriteLine(bst.GetSize());
             bst.PrintPreorder();
             bst.PrintInorder();
+            bst.PrintPostorder();
         }
     }
 }

@@ -68,6 +68,11 @@ namespace Lab2
             return false;
         }
 
+        public void MakeEmpty()
+        {
+            root = null;
+        }
+        
         public int GetSize()
         {
             return GetSizeRec(root);
@@ -98,7 +103,20 @@ namespace Lab2
                 Console.WriteLine();
             }
         }
-
+        
+        public void PrintPostorder()
+        {
+            if (root == null)
+            {
+                Console.WriteLine("Tree is empty.");   
+            }
+            else
+            {
+                PostorderRec(root);
+                Console.WriteLine();
+            }
+        }
+        
         private void PreorderRec(Node r)
         {
             if (r != null)
@@ -119,6 +137,15 @@ namespace Lab2
             }
         }
         
+        private void PostorderRec(Node r)
+        {
+            if (r != null)
+            {
+                PostorderRec(r.LNode);
+                PostorderRec(r.RNode);   
+                Console.Write($"{r.Data} ");
+            }
+        }
         private int GetSizeRec(Node r)
         {
             if (r == null)
@@ -129,15 +156,34 @@ namespace Lab2
         
         private Node DeleteItemRec(int item, Node r)
         {
-            if (r.Data == item)
-                return r;
-            
-            if (r.Data < item)
-                return DeleteItemRec(item, r.LNode);
+            if (item < r.Data)
+                r.LNode = DeleteItemRec(item, r.LNode);
+            else if (item > r.Data)
+                r.RNode = DeleteItemRec(item, r.RNode);
             else
-                return DeleteItemRec(item, r.RNode);
+                r = DeleteFound(r);
+            return r;  
         }
-        
+
+        private Node DeleteFound(Node t)
+        {
+            if (t.LNode == null)
+                return t.RNode;
+            else if (t.RNode == null)
+                return t.LNode;
+            else
+            {
+                Node temp = t.RNode;
+                while (temp.LNode != null)
+                {
+                    temp = temp.LNode;
+                }
+
+                t.Data = temp.Data;
+                t.RNode = DeleteItemRec(t.Data, t.RNode);
+                return t;
+            }
+        }
         private Node AddItemRec(int item, Node r)
         {
             if (r == null)
