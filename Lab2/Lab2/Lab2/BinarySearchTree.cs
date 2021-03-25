@@ -85,6 +85,19 @@ namespace Lab2
                 Console.WriteLine();
             }
         }
+        
+        public void PrintInorder()
+        {
+            if (root == null)
+            {
+                Console.WriteLine("Tree is empty.");   
+            }
+            else
+            {
+                InorderRec(root);
+                Console.WriteLine();
+            }
+        }
 
         private void PreorderRec(Node r)
         {
@@ -95,7 +108,17 @@ namespace Lab2
                 PreorderRec(r.RNode);   
             }
         }
-
+        
+        private void InorderRec(Node r)
+        {
+            if (r != null)
+            {
+                InorderRec(r.LNode);
+                Console.Write($"{r.Data} ");
+                InorderRec(r.RNode);   
+            }
+        }
+        
         private int GetSizeRec(Node r)
         {
             if (r == null)
