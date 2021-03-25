@@ -1,4 +1,6 @@
-﻿namespace Lab2
+﻿using System;
+
+namespace Lab2
 {
     public class Node
     {
@@ -25,9 +27,28 @@
 
         public void AddItem(int item)
         {
-            AddItemRec(item, root);
+            root = AddItemRec(item, root);
         }
 
+        public bool Search(int item)
+        {
+            return SearchRec(item, root);
+        }
+
+        private bool SearchRec(int item, Node r)
+        {
+            if (r == null)
+                return false; 
+            
+            if (r.Data == item)
+                return true;
+
+            if (item < r.Data)
+                return SearchRec(item, r.LNode);
+            else
+                return SearchRec(item, r.RNode);
+        }  
+        
         private Node AddItemRec(int item, Node r)
         {
             if (r == null)
