@@ -2,15 +2,15 @@
 
 namespace Lab2
 {
-    public class Node
+    internal class Node
     {
-        public Node RNode { get; set; }
-        public Node LNode { get; set; }
+        public Node RNode { get; }
+        public Node LNode { get; }
         public int Data;
 
         public Node()
         {
-            this.Data = 0;
+            this.Data = Int32.MinValue;
             this.RNode = null;
             this.LNode = null;
         }
@@ -61,10 +61,31 @@ namespace Lab2
             return Int32.MinValue;
         }
 
+        public bool IsEmpty()
+        {
+            if (root == null)
+                return true;
+            return false;
+        }
+
+        public int GetSize()
+        {
+            return GetSizeRec(root);
+        }
+
+        private int GetSizeRec(Node r)
+        {
+            if (r == null)
+                return 0;
+            
+            return GetSizeRec(r.LNode) + GetSizeRec(r.RNode) + 1;
+        }
+        
         private Node DeleteItemRec(int item, Node r)
         {
             if (r.Data == item)
                 return r;
+            
             if (r.Data < item)
                 return DeleteItemRec(item, r.LNode);
             else
