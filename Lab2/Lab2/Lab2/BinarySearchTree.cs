@@ -4,8 +4,8 @@ namespace Lab2
 {
     internal class Node
     {
-        public Node RNode { get; }
-        public Node LNode { get; }
+        public Node RNode { get; set; }
+        public Node LNode { get; set; }
         public int Data;
 
         public Node()
@@ -73,6 +73,29 @@ namespace Lab2
             return GetSizeRec(root);
         }
 
+        public void PrintPreorder()
+        {
+            if (root == null)
+            {
+                Console.WriteLine("Tree is empty.");   
+            }
+            else
+            {
+                PreorderRec(root);
+                Console.WriteLine();
+            }
+        }
+
+        private void PreorderRec(Node r)
+        {
+            if (r != null)
+            {
+                Console.Write($"{r.Data} ");
+                PreorderRec(r.LNode);
+                PreorderRec(r.RNode);   
+            }
+        }
+
         private int GetSizeRec(Node r)
         {
             if (r == null)
@@ -101,9 +124,10 @@ namespace Lab2
             }
 
             if (item < r.Data)
-                return AddItemRec(item, r.LNode);
+                r.LNode = AddItemRec(item, r.LNode);
             else
-                return AddItemRec(item, r.RNode);
+                r.RNode = AddItemRec(item, r.RNode);
+            return r;
         }
     }
 }

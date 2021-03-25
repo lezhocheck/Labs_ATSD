@@ -6,7 +6,19 @@ namespace Lab2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BinarySearchTree bst = new BinarySearchTree();
+            bst.AddItem(15);
+            bst.AddItem(10);
+            bst.AddItem(7);
+            bst.AddItem(50);
+            bst.AddItem(12);
+            bst.AddItem(11);
+            bst.AddItem(45);
+            bst.AddItem(13);
+            bst.AddItem(55);
+            bst.AddItem(14);
+            Console.WriteLine(bst.GetSize());
+            bst.PrintPreorder();
         }
     }
 }
