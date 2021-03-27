@@ -49,16 +49,15 @@ namespace Lab2
                 return SearchRec(item, r.RNode);
         }
 
-        public int DeleteItem(int item)
+        public virtual void DeleteItem(int item)
         {
             if (Search(item))
             {
                 Root = DeleteItemRec(item, Root);
-                return Root.Data;
+                return;
             }
 
             Console.WriteLine("Item was not deleted.");
-            return Int32.MinValue;
         }
 
         public bool IsEmpty()

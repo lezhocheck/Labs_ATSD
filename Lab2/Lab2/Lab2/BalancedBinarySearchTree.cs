@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace Lab2
 {
@@ -11,6 +10,21 @@ namespace Lab2
             Root = AddItemRec(item, Root);
             if(!IsBalancedRec(Root))
                 Rebalance();
+        }
+
+        public override void DeleteItem(int item)
+        {
+            if (Search(item))
+            {
+                Root = DeleteItemRec(item, Root);
+                
+                if(!IsBalancedRec(Root))
+                    Rebalance();
+                
+                return;
+            }
+            
+            Console.WriteLine("Item was not deleted.");
         }
 
         private void Rebalance()
