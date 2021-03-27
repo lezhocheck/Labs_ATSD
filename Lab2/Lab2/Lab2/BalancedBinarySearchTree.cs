@@ -29,34 +29,74 @@ namespace Lab2
 
         public void PrintSorted()
         {
-            List<Node> list = new List<Node>();
-            ToListRec(list, Root);
+            if (Root != null)
+            {
+                List<Node> list = new List<Node>();
+                ToListRec(list, Root);
 
-            foreach (var node in list)
-            {
-                Console.Write($"{node.Data} ");
-            }
-            Console.WriteLine();
+                foreach (var node in list)
+                {
+                    Console.Write($"{node.Data} ");
+                }
+                Console.WriteLine();
             
-            list.Reverse();
+                list.Reverse();
             
-            foreach (var node in list)
-            {
-                Console.Write($"{node.Data} ");
+                foreach (var node in list)
+                {
+                    Console.Write($"{node.Data} ");
+                }
+                Console.WriteLine();   
             }
-            Console.WriteLine();
+            else
+            {
+                Console.WriteLine("Tree is empty.");
+            }
         }
 
         public int CountNode()
         {
+            if (Root == null)
+            {
+                Console.WriteLine("Tree is empty.");
+                return Int32.MinValue;
+            }
+
             return CountNodeRec(Root);
         }
 
         public int SumKeys()
         {
+            if (Root == null)
+            {
+                Console.WriteLine("Tree is empty.");
+                return Int32.MinValue;
+            }
+            
             return SumKeysRec(Root);
         }
-        
+
+        public void DeleteEven()
+        {
+            DeleteEvenRec(Root);   
+        }
+
+        private void DeleteEvenRec(Node r)
+        {
+            if(r == null) return;
+
+            if (r.Data % 2 == 0)
+            {
+                DeleteItem(r.Data);
+                r = Root;
+                DeleteEvenRec(r);
+            }
+            else
+            {
+                DeleteEvenRec(r.LNode);
+                DeleteEvenRec(r.RNode);   
+            }
+        }
         private int CountNodeRec(Node r)
         {
             if (r.LNode == null)
@@ -71,7 +111,7 @@ namespace Lab2
                 return 0;
             return SumKeysRec(r.RNode) + r.RNode.Data;
         }
-        
+
         private void Rebalance()
         {
             List<Node> list = new List<Node>();

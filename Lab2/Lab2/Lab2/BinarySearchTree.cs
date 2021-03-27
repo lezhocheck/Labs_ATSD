@@ -115,6 +115,11 @@ namespace Lab2
                 Console.WriteLine();
             }
         }
+
+        public bool IsBalanced()
+        {
+            return IsBalancedRec(Root);
+        }
         
         protected bool IsBalancedRec(Node r)
         {
