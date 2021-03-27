@@ -10,7 +10,6 @@ namespace Lab2
             bst.AddItem(15);
             bst.AddItem(10);
             bst.AddItem(7);
-            bst.AddItem(50);
             bst.AddItem(12);
             bst.AddItem(11);
             bst.AddItem(45);

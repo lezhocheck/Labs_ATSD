@@ -2,7 +2,7 @@
 
 namespace Lab2
 {
-    internal class Node
+    public class Node
     {
         public Node RNode { get; set; }
         public Node LNode { get; set; }
@@ -18,21 +18,21 @@ namespace Lab2
     
     public class BinarySearchTree
     {
-        private Node root;
+        protected Node Root;
 
         public BinarySearchTree()
         {
-            root = null;
+            Root = null;
         }
 
         public void AddItem(int item)
         {
-            root = AddItemRec(item, root);
+            Root = AddItemRec(item, Root);
         }
 
         public bool Search(int item)
         {
-            return SearchRec(item, root);
+            return SearchRec(item, Root);
         }
 
         private bool SearchRec(int item, Node r)
@@ -53,8 +53,8 @@ namespace Lab2
         {
             if (Search(item))
             {
-                root = DeleteItemRec(item, root);
-                return root.Data;
+                Root = DeleteItemRec(item, Root);
+                return Root.Data;
             }
 
             Console.WriteLine("Item was not deleted.");
@@ -63,56 +63,56 @@ namespace Lab2
 
         public bool IsEmpty()
         {
-            if (root == null)
+            if (Root == null)
                 return true;
             return false;
         }
 
         public void MakeEmpty()
         {
-            root = null;
+            Root = null;
         }
         
         public int GetSize()
         {
-            return GetSizeRec(root);
+            return GetSizeRec(Root);
         }
 
         public void PrintPreorder()
         {
-            if (root == null)
+            if (Root == null)
             {
                 Console.WriteLine("Tree is empty.");   
             }
             else
             {
-                PreorderRec(root);
+                PreorderRec(Root);
                 Console.WriteLine();
             }
         }
         
         public void PrintInorder()
         {
-            if (root == null)
+            if (Root == null)
             {
                 Console.WriteLine("Tree is empty.");   
             }
             else
             {
-                InorderRec(root);
+                InorderRec(Root);
                 Console.WriteLine();
             }
         }
         
         public void PrintPostorder()
         {
-            if (root == null)
+            if (Root == null)
             {
                 Console.WriteLine("Tree is empty.");   
             }
             else
             {
-                PostorderRec(root);
+                PostorderRec(Root);
                 Console.WriteLine();
             }
         }
