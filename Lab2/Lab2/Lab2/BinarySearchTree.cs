@@ -25,7 +25,7 @@ namespace Lab2
             Root = null;
         }
 
-        public void AddItem(int item)
+        public virtual void AddItem(int item)
         {
             Root = AddItemRec(item, Root);
         }
@@ -117,7 +117,7 @@ namespace Lab2
             }
         }
         
-        private void PreorderRec(Node r)
+        protected void PreorderRec(Node r)
         {
             if (r != null)
             {
@@ -127,7 +127,7 @@ namespace Lab2
             }
         }
         
-        private void InorderRec(Node r)
+        protected void InorderRec(Node r)
         {
             if (r != null)
             {
@@ -137,7 +137,7 @@ namespace Lab2
             }
         }
         
-        private void PostorderRec(Node r)
+        protected void PostorderRec(Node r)
         {
             if (r != null)
             {
@@ -146,7 +146,7 @@ namespace Lab2
                 Console.Write($"{r.Data} ");
             }
         }
-        private int GetSizeRec(Node r)
+        protected int GetSizeRec(Node r)
         {
             if (r == null)
                 return 0;
@@ -154,7 +154,7 @@ namespace Lab2
             return GetSizeRec(r.LNode) + GetSizeRec(r.RNode) + 1;
         }
         
-        private Node DeleteItemRec(int item, Node r)
+        protected Node DeleteItemRec(int item, Node r)
         {
             if (item < r.Data)
                 r.LNode = DeleteItemRec(item, r.LNode);
@@ -165,7 +165,7 @@ namespace Lab2
             return r;  
         }
 
-        private Node DeleteFound(Node t)
+        protected Node DeleteFound(Node t)
         {
             if (t.LNode == null)
                 return t.RNode;
@@ -184,7 +184,7 @@ namespace Lab2
                 return t;
             }
         }
-        private Node AddItemRec(int item, Node r)
+        protected Node AddItemRec(int item, Node r)
         {
             if (r == null)
             {
