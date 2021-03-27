@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Lab2
 {
@@ -7,31 +9,41 @@ namespace Lab2
         public override void AddItem(int item)
         {
             Root = AddItemRec(item, Root);
+            if(!IsBalancedRec(Root))
+                Rebalance();
         }
 
-        private bool IsBalanced()
+        private void Rebalance()
         {
-            return IsBalancedRec(Root);
+            List<Node> list = new List<Node>();
+            ToListRec(list, Root);
+            Root = ConvertToBbst(list, 0, list.Count - 1);
         }
-        private bool IsBalancedRec(Node r)
+
+        private void ToListRec(List<Node> list, Node r)
         {
-            if (r == null)
-                return true;
+            if(r == null)
+                return;
             
-            if (Math.Abs(GetHeight(r.LNode) - GetHeight(r.RNode)) <= 1
-                && IsBalancedRec(r.LNode) && IsBalancedRec(r.RNode))
-                return true;
-            
-            return false;
+            ToListRec(list, r.LNode);
+            list.Add(r);
+            ToListRec(list, r.RNode);
         }
 
-        private int GetHeight(Node r)
+        private Node ConvertToBbst(List<Node> list, int first, int last)
         {
-            if (r == null)
-                return 0;
+            if (first > last)
+                return null;
 
-            return Math.Max(GetHeight(r.LNode), GetHeight(r.RNode)) + 1;
+            int mid = (first + last) / 2;
+
+            Node t = list[mid];
+            t.LNode = ConvertToBbst(list, first, mid - 1);
+            t.RNode = ConvertToBbst(list, mid + 1, last);
+
+            return t;
         }
+        
 
     }
 }

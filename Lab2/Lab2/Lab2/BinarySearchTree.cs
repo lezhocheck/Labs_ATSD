@@ -117,6 +117,25 @@ namespace Lab2
             }
         }
         
+        protected bool IsBalancedRec(Node r)
+        {
+            if (r == null)
+                return true;
+            
+            if (Math.Abs(GetHeight(r.LNode) - GetHeight(r.RNode)) <= 1
+                && IsBalancedRec(r.LNode) && IsBalancedRec(r.RNode))
+                return true;
+            
+            return false;
+        }
+        
+        protected int GetHeight(Node r)
+        {
+            if (r == null)
+                return 0;
+
+            return Math.Max(GetHeight(r.LNode), GetHeight(r.RNode)) + 1;
+        }
         protected void PreorderRec(Node r)
         {
             if (r != null)
