@@ -124,7 +124,42 @@ namespace Lab2
             
             return t;
         }
-        
+
+        public void Insert(BalancedBinarySearchTree tree)
+        {
+            InsertRec(tree.Root);
+        }
+
+        public bool Contains(BalancedBinarySearchTree tree)
+        {
+            BalancedBinarySearchTree temp = this.Copy();
+            List<Node> list = new List<Node>();
+            ToListRec(list, tree.Root);
+            
+            foreach (Node item in list)
+            {
+                if (temp.Search(item.Data))
+                {
+                    temp.DeleteItem(item.Data);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        private void InsertRec(Node r)
+        {
+            if(r == null) return;
+            
+            this.AddItem(r.Data);
+            
+            InsertRec(r.LNode);
+            InsertRec(r.RNode);
+        }
         private void CopyRec(Node r, BalancedBinarySearchTree t)
         {
             if(r == null) return;
@@ -205,7 +240,5 @@ namespace Lab2
 
             return t;
         }
-        
-
     }
 }
