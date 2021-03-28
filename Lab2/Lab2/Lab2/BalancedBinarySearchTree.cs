@@ -109,7 +109,30 @@ namespace Lab2
             DeleteDuplicateRec(this.Root, t);
             this.Root = t.Root;
         }
+        
+        public int FindSecondLargest()
+        {
+            List<Node> list = new List<Node>();
+            ToListRec(list, Root);
+            return list[^2].Data;
+        }
 
+        public BalancedBinarySearchTree Copy()
+        {
+            BalancedBinarySearchTree t = new BalancedBinarySearchTree();
+            CopyRec(Root, t);
+            
+            return t;
+        }
+        
+        private void CopyRec(Node r, BalancedBinarySearchTree t)
+        {
+            if(r == null) return;
+            t.AddItem(r.Data);
+            
+            CopyRec(r.LNode, t);
+            CopyRec(r.RNode, t);
+        }
         private void DeleteDuplicateRec(Node r, BalancedBinarySearchTree t)
         {
             if(r == null) return;
