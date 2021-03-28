@@ -81,6 +81,46 @@ namespace Lab2
             DeleteEvenRec(Root);   
         }
 
+        public int FindMiddle()
+        {
+            List<Node> list = new List<Node>();
+            ToListRec(list, Root);
+            
+            int mid = (list[0].Data + list[^1].Data) / 2;
+            Node temp = list[0];
+            int minDif = Math.Abs(temp.Data - mid);
+
+            foreach (Node item in list)
+            {
+                int t = Math.Abs(item.Data - mid);
+                if (t < minDif)
+                {
+                    minDif = t;
+                    temp = item;
+                }
+            }
+
+            return temp.Data;
+        }
+
+        public void DeleteDuplicate()
+        {
+            BalancedBinarySearchTree t = new BalancedBinarySearchTree();
+            DeleteDuplicateRec(this.Root, t);
+            this.Root = t.Root;
+        }
+
+        private void DeleteDuplicateRec(Node r, BalancedBinarySearchTree t)
+        {
+            if(r == null) return;
+            
+            if (!t.Search(r.Data))
+                t.AddItem(r.Data);
+            
+            DeleteDuplicateRec(r.LNode, t);
+            DeleteDuplicateRec(r.RNode, t);
+        }
+
         private void DeleteEvenRec(Node r)
         {
             if(r == null) return;
