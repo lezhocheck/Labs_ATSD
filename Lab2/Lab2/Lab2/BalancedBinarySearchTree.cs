@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Lab2
 {
@@ -142,15 +143,69 @@ namespace Lab2
                 {
                     temp.DeleteItem(item.Data);
                 }
-                else
-                {
-                    return false;
-                }
+                else return false;
             }
             
             return true;
         }
 
+        public bool IsEquals(BalancedBinarySearchTree tree)
+        {
+            IsEqualsRec(this.Root, tree.Root, out bool res);
+            return res;
+        }
+
+        public BalancedBinarySearchTree Symmetric()
+        {
+            BalancedBinarySearchTree temp = new BalancedBinarySearchTree();
+            SymmetricRec(this.Root, temp);
+            
+            return temp;
+        }
+
+        private void SymmetricRec(Node t, BalancedBinarySearchTree tree)
+        {
+            if(t == null) return;
+
+            tree.Root = AddItemSymRec(t.Data, tree.Root);
+
+            SymmetricRec(t.LNode, tree);
+            SymmetricRec(t.RNode, tree);
+        }
+        
+        private Node AddItemSymRec(int item, Node r)
+        {
+            if (r == null)
+            {
+                r = new Node { Data = item };
+                return r;
+            }
+
+            if (item >= r.Data)
+                r.LNode = AddItemSymRec(item, r.LNode);
+            else
+                r.RNode = AddItemSymRec(item, r.RNode);
+            return r;
+        }
+        
+        private void IsEqualsRec(Node r1, Node r2, out bool val)
+        {
+            if (r1 == null && r2 == null)
+            {
+                val = true;
+                return;
+            }
+            
+            if (r1.Data != r2.Data)
+            {
+                val = false;
+                return;   
+            }
+
+            IsEqualsRec(r1.LNode, r2.LNode, out val);
+            IsEqualsRec(r1.RNode, r2.RNode, out val);
+        }
+        
         private void InsertRec(Node r)
         {
             if(r == null) return;
@@ -160,6 +215,7 @@ namespace Lab2
             InsertRec(r.LNode);
             InsertRec(r.RNode);
         }
+        
         private void CopyRec(Node r, BalancedBinarySearchTree t)
         {
             if(r == null) return;
@@ -168,6 +224,7 @@ namespace Lab2
             CopyRec(r.LNode, t);
             CopyRec(r.RNode, t);
         }
+        
         private void DeleteDuplicateRec(Node r, BalancedBinarySearchTree t)
         {
             if(r == null) return;
@@ -195,6 +252,7 @@ namespace Lab2
                 DeleteEvenRec(r.RNode);   
             }
         }
+        
         private int CountNodeRec(Node r)
         {
             if (r.LNode == null)
