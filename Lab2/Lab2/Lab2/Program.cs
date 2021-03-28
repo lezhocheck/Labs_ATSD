@@ -9,13 +9,15 @@ namespace Lab2
             BalancedBinarySearchTree bbst = new BalancedBinarySearchTree();
             
             bbst.AddItem(2);
-            bbst.AddItem(2);
+            bbst.AddItem(3);
             bbst.AddItem(1);
             bbst.AddItem(8);
-
-            BalancedBinarySearchTree bbst1 = bbst.Symmetric();
+            bbst.AddItem(6);
+            bbst.AddItem(7);
+            bbst.AddItem(4);
+            bbst.AddItem(5);
+            Console.WriteLine(bbst.GetCommonAncestor(5, 2));
             bbst.PrintPreorder();
-            bbst1.PrintPreorder();
         }
     }
 }

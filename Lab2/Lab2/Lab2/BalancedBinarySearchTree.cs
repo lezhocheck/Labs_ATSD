@@ -163,6 +163,69 @@ namespace Lab2
             return temp;
         }
 
+        public int GetFatherNode(int item)
+        {
+            if (Search(item))
+            {
+                return GetFatherNodeRec(Root, item);
+            }
+            else
+            {
+                Console.WriteLine("Item does not exists.");
+                return Int32.MinValue;
+            }
+        }
+        
+        public int GetCommonAncestor(int val1, int val2)
+        {
+            if (Search(val1) && Search(val2) && val1 != val2)
+            {
+                return CommonAncestorRec(Root, val1, val2).Data;
+            }
+            else
+            {
+                Console.WriteLine("Item(-s) does not exists or entered values are same.");
+                return Int32.MinValue;
+            }
+        }
+
+        private Node CommonAncestorRec(Node r, int val1, int val2)
+        {
+            if(r == null)
+                return null;
+            
+            if (r.Data == val1 || r.Data == val2)
+                return r;
+
+            Node lSub = CommonAncestorRec(r.LNode, val1, val2);
+            Node rSub = CommonAncestorRec(r.RNode, val1, val2);
+            
+            if(lSub != null && rSub != null)
+                return r;
+
+            if (lSub != null)
+                return lSub;
+            else
+                return rSub;
+        }
+
+        private int GetFatherNodeRec(Node r, int item)
+        {
+            if (r == null || r.Data == item)
+                return Int32.MinValue;
+
+            if (r.LNode != null && r.LNode.Data == item)
+                return r.Data;
+            
+            if (r.RNode != null && r.RNode.Data == item)
+                return r.Data;
+            
+            if(item < r.Data) 
+                return GetFatherNodeRec(r.LNode, item);
+            else
+                return GetFatherNodeRec(r.RNode, item);
+        }
+        
         private void SymmetricRec(Node t, BalancedBinarySearchTree tree)
         {
             if(t == null) return;
