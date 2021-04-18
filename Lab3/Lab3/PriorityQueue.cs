@@ -30,10 +30,7 @@ namespace Lab3
         {
             _root = null;
         }
-
-        public void EndQueue(int item, int priority) => 
-            _root = EndQueueRec(_root, item, priority);
-
+        
         private int SizeRec(Node root)
         {
             if (root == null)
@@ -42,6 +39,9 @@ namespace Lab3
             return 1 + SizeRec(root.LeftSon) + SizeRec(root.RightSon);
         }
         
+        public void EndQueue(int item, int priority) => 
+            _root = EndQueueRec(_root, item, priority);
+
         private Node EndQueueRec(Node root, int item, int priority)
         {
             if (root == null)
@@ -52,7 +52,7 @@ namespace Lab3
                 return t;   
             }
 
-            if(root.Priority < priority)
+            if(priority < root.Priority)
                 root.LeftSon = EndQueueRec(root.LeftSon, item, priority);
             else
                root.RightSon = EndQueueRec(root.RightSon, item, priority);
@@ -70,7 +70,43 @@ namespace Lab3
             PrintRec(root.RightSon);
         }
 
-        public void Print() => PrintRec(_root);
+        public void Print()
+        {
+            PrintRec(_root);
+            Console.WriteLine();
+        }
         
+        public void DequeueMax() =>  _root = DeleteItemRec(_root);
+
+        private Node DeleteItemRec(Node root)
+        {
+            if (root.RightSon == null)
+            {
+                root = DeleteFound(root);  
+                return root;  
+            }
+            root.RightSon = DeleteItemRec(root.RightSon);
+            return root;  
+        }
+
+        private Node DeleteFound(Node root)
+        {
+            if (root.LeftSon == null)
+                return root.RightSon;
+            else if (root.RightSon == null)
+                return root.LeftSon;
+            else
+            {
+                Node temp = root.RightSon;
+                while (temp.LeftSon != null)
+                {
+                    temp = temp.LeftSon;
+                }
+
+                root.Data = temp.Data;
+                root.RightSon = DeleteItemRec(root.RightSon);
+                return root;
+            }
+        }
     }
 }
