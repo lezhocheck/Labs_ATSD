@@ -8,13 +8,14 @@ namespace Lab3
         {
             ArrayList list = new ArrayList();
             list.AddItem(5);
-            list.AddItem(3);
-            list.AddItem(6);
-            list.AddItem(5);
-            list.AddItem(3);
+            list.AddItem(4);
+            list.AddItem(7);
+            list.AddItem(1);
+            list.AddItem(0);
             list.AddItem(6);
             list.Print();
-            list.DeleteAt(5);
+            list.Delete(7);
+            list.HeapSort();
             list.Print();
         }
     }

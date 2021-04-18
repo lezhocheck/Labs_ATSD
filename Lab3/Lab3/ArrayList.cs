@@ -9,11 +9,11 @@ namespace Lab3
         private int _last;
 
         public int Size => _last + 1;
-
+        public bool IsEmpty => (Size <= 0);
         public ArrayList(int capacity = 5)
         {
-            _array = new int[capacity];
-            _last = -1;
+            _array = new int[capacity + 1];
+            _last = 0;
         }
 
         public void AddItem(int item)
@@ -22,7 +22,7 @@ namespace Lab3
             {
                 int[] newArray = new int[_array.Length + 10];
                 
-                for (int i = 0; i < _array.Length; i++)
+                for (int i = 1; i < Size; i++)
                 {
                     newArray[i] = _array[i];
                 }
@@ -36,7 +36,7 @@ namespace Lab3
 
         public void Print()
         {
-            for (int i = 0; i < Size; i++)
+            for (int i = 1; i < Size; i++)
             {
                 Console.Write($"{_array[i]} ");
             }
@@ -46,7 +46,7 @@ namespace Lab3
 
         public bool Search(int item)
         {
-            for (int i = 0; i < Size; i++)
+            for (int i = 1; i < Size; i++)
             {
                 if (_array[i] == item)
                     return true;
@@ -59,7 +59,7 @@ namespace Lab3
         {
             if (Search(item))
             {
-                for (int i = 0; i < Size; i++)
+                for (int i = 1; i < Size; i++)
                 {
                     if (_array[i] == item)
                     {
@@ -92,5 +92,50 @@ namespace Lab3
                 throw new IndexOutOfRangeException();
             }
         }
+
+        private void Swap(ref int a, ref int b)
+        {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+        
+        private void Heapify(int[] array, int root, int last)
+        {
+            int child = root;
+            int unsettled = root;
+            
+            while(2 * unsettled <= last)	       
+            {	
+                if(2 * unsettled < last && array[2 * unsettled + 1] > array[2 * unsettled])
+                    child = 2*unsettled + 1;	
+                else	
+                    child = 2*unsettled;		
+                
+                if(array[unsettled] < array[child])	
+                {	
+                    Swap(ref array[unsettled], ref array[child]);
+                    unsettled = child;
+                }
+                else break;
+            }
+        }
+        
+        private void HeapsortRec(int[] array, int n)
+        {
+            n--;
+            
+            for(int i = n/2; i >= 1; i--)		
+                Heapify(array, i, n);
+            
+            for(int end = n-1; end >= 1; end--)	
+            {
+                Swap(ref array[1], ref array[end+1]);
+                Heapify(array, 1, end);
+            }
+        }
+
+        public void HeapSort() => HeapsortRec(_array, Size);
+
     }
 }
