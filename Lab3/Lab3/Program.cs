@@ -6,6 +6,23 @@ namespace Lab3
     {
         static void Main(string[] args)
         {
+
+            ArrayList arrayList = new ArrayList();
+            arrayList.AddItem(6);
+            arrayList.AddItem(3);
+            arrayList.AddItem(-8);
+            arrayList.AddItem(0);
+            arrayList.AddItem(3);
+            arrayList.AddItem(5);
+            arrayList.Print();
+            arrayList.Delete(3);
+            arrayList.HeapSort(ArrayList.Order.Descending);
+            arrayList.Print();
+            arrayList.DeleteAt(2);
+            arrayList.HeapSort(ArrayList.Order.Ascending);
+            arrayList.Print();
+            
+            
             PriorityQueue pq = new PriorityQueue();
 
             pq.EndQueue(5, 1);
