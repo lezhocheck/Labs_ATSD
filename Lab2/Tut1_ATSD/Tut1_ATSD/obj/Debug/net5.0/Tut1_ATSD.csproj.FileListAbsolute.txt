@@ -1,0 +1,16 @@
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\bin\Debug\net5.0\Tut1_ATSD.exe
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\bin\Debug\net5.0\Tut1_ATSD.deps.json
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\bin\Debug\net5.0\Tut1_ATSD.runtimeconfig.json
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\bin\Debug\net5.0\Tut1_ATSD.runtimeconfig.dev.json
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\bin\Debug\net5.0\Tut1_ATSD.dll
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\bin\Debug\net5.0\ref\Tut1_ATSD.dll
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\bin\Debug\net5.0\Tut1_ATSD.pdb
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\Tut1_ATSD.csprojAssemblyReference.cache
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\Tut1_ATSD.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\Tut1_ATSD.AssemblyInfoInputs.cache
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\Tut1_ATSD.AssemblyInfo.cs
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\Tut1_ATSD.csproj.CoreCompileInputs.cache
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\Tut1_ATSD.dll
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\ref\Tut1_ATSD.dll
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\Tut1_ATSD.pdb
+C:\Users\Олег\Documents\Labs_ATSD\Lab2\Tut1_ATSD\Tut1_ATSD\obj\Debug\net5.0\Tut1_ATSD.genruntimeconfig.cache
