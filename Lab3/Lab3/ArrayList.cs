@@ -178,6 +178,5 @@ namespace Lab3
         }
 
         public void HeapSort(Order order) => HeapsortRec(_array, Size, order);
-
     }
 }
