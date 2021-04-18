@@ -14,8 +14,7 @@ namespace Lab3
             list.AddItem(0);
             list.AddItem(6);
             list.Print();
-            list.Delete(7);
-            list.HeapSort();
+            list.HeapSort(ArrayList.Order.Descending);
             list.Print();
         }
     }
