@@ -54,5 +54,43 @@ namespace Lab3
 
             return false;
         }
+
+        public void Delete(int item)
+        {
+            if (Search(item))
+            {
+                for (int i = 0; i < Size; i++)
+                {
+                    if (_array[i] == item)
+                    {
+                        for (int j = i + 1; j < Size; j++)
+                            _array[j - 1] = _array[j];
+                        
+                        break;
+                    }
+                }
+                
+                _last--;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public void DeleteAt(int index)
+        {
+            if (index >= 0 && index < Size)
+            {
+                for (int i = index + 1; i < Size; i++)
+                    _array[i - 1] = _array[i];
+
+                _last--;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
     }
 }

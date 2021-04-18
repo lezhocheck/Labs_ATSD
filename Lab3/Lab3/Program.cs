@@ -14,6 +14,8 @@ namespace Lab3
             list.AddItem(3);
             list.AddItem(6);
             list.Print();
+            list.DeleteAt(5);
+            list.Print();
         }
     }
 }
