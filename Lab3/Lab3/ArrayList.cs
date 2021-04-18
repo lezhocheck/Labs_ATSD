@@ -1,13 +1,18 @@
-﻿namespace Lab3
+﻿using System;
+using System.Linq;
+
+namespace Lab3
 {
     public class ArrayList
     {
         private int[] _array;
         private int _last;
 
-        public ArrayList(int cap = 25)
+        public int Size => _last + 1;
+
+        public ArrayList(int capacity = 5)
         {
-            _array = new int[cap];
+            _array = new int[capacity];
             _last = -1;
         }
 
@@ -27,6 +32,27 @@
             
             _array[_last + 1] = item;
             _last++;
+        }
+
+        public void Print()
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                Console.Write($"{_array[i]} ");
+            }
+            
+            Console.WriteLine();
+        }
+
+        public bool Search(int item)
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                if (_array[i] == item)
+                    return true;
+            }
+
+            return false;
         }
     }
 }

@@ -6,7 +6,14 @@ namespace Lab3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ArrayList list = new ArrayList();
+            list.AddItem(5);
+            list.AddItem(3);
+            list.AddItem(6);
+            list.AddItem(5);
+            list.AddItem(3);
+            list.AddItem(6);
+            list.Print();
         }
     }
 }
