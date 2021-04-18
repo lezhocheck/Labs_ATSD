@@ -6,16 +6,16 @@ namespace Lab3
     {
         static void Main(string[] args)
         {
-            ArrayList list = new ArrayList();
-            list.AddItem(5);
-            list.AddItem(4);
-            list.AddItem(7);
-            list.AddItem(1);
-            list.AddItem(0);
-            list.AddItem(6);
-            list.Print();
-            list.HeapSort(ArrayList.Order.Descending);
-            list.Print();
+            PriorityQueue pq = new PriorityQueue();
+
+            pq.EndQueue(5, 1);
+            pq.EndQueue(0, 3);
+            pq.EndQueue(7, 0);
+            pq.EndQueue(4, 2);
+            pq.EndQueue(9, 8);
+            pq.EndQueue(6, 9);
+            
+            pq.Print();
         }
     }
 }

@@ -31,19 +31,8 @@ namespace Lab3
             _root = null;
         }
 
-        public void EndQueue(int item, int priority)
-        {
-            if (_root == null)
-            {
-                _root = new Node();
-                _root.Data = item;
-                _root.Priority = priority;
-            }
-            else
-            {
-                EndQueueRec(_root, item, priority);
-            }
-        }
+        public void EndQueue(int item, int priority) => 
+            _root = EndQueueRec(_root, item, priority);
 
         private int SizeRec(Node root)
         {
@@ -52,19 +41,36 @@ namespace Lab3
 
             return 1 + SizeRec(root.LeftSon) + SizeRec(root.RightSon);
         }
-        private void EndQueueRec(Node root, int item, int priority)
+        
+        private Node EndQueueRec(Node root, int item, int priority)
         {
             if (root == null)
             {
-                root = new Node();
-                root.Data = item;
-                root.Priority = priority;
+                Node t = new Node();
+                t.Data = item;
+                t.Priority = priority;
+                return t;   
             }
-            
+
             if(root.Priority < priority)
-                EndQueueRec(root.LeftSon, item, priority);
+                root.LeftSon = EndQueueRec(root.LeftSon, item, priority);
             else
-                EndQueueRec(root.RightSon, item, priority);
+               root.RightSon = EndQueueRec(root.RightSon, item, priority);
+
+            return root;
         }
+
+        private void PrintRec(Node root)
+        {
+            if(root == null)
+                return;
+            
+            PrintRec(root.LeftSon);
+            Console.Write($"{root.Data} ");
+            PrintRec(root.RightSon);
+        }
+
+        public void Print() => PrintRec(_root);
+        
     }
 }
