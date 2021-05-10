@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f131556-6fca-4daa-87fa-a71c25d2e5f2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/obj/Debug/netcoreapp3.1/Lab1.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/obj/Debug/netcoreapp3.1/Lab1.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/obj/Lab1.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/obj/Lab1.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3/Lab3/obj/Debug/net5.0/Lab3.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3/Lab3/obj/Debug/net5.0/Lab3.csprojAssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +32,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
     <configuration name="Lab1" type="DotNetProject" factoryName=".NET Project">
@@ -46,16 +54,23 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="5f131556-6fca-4daa-87fa-a71c25d2e5f2" name="Default Changelist" comment="" />
       <created>1617783017259</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617783017259</updated>
       <workItem from="1617783021084" duration="1000" />
+      <workItem from="1620121022357" duration="613000" />
     </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -67,6 +82,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
