@@ -42,7 +42,19 @@ namespace Lab4
                 Console.WriteLine($"Edge [{edge.Vertex}, {edge.AdjacentVertex} with weight: {edge.Weight}]");
         }
 
-        public List<Edge> Kruskal()
+        public void Kruskal()
+        {
+            List<Edge> edges = KruskalList();
+            int totalWeight = 0;
+            Console.WriteLine("Kruskal:");
+            foreach (var edge in edges)
+            {
+                Console.WriteLine($"Edge [{edge.Vertex}, {edge.AdjacentVertex}] with weight: {edge.Weight}");
+                totalWeight += edge.Weight;
+            }
+            Console.WriteLine($"MST weight: {totalWeight}");
+        }
+        private List<Edge> KruskalList()
         {
             _edges.Sort((x, y) => x.Weight.CompareTo(y.Weight));
             
@@ -147,6 +159,43 @@ namespace Lab4
             for (int i = 0; i < _size; i++)
             {
                 Console.WriteLine($"Smallest path from {start} to {i} is: {distance[i]}");
+            }
+        }
+        
+        public void Prim()
+        {
+            int[] parent = new int[_size];
+            int[] key = new int[_size];
+            bool[] visited = new bool[_size];
+            int[,] matrix = To2dArray();
+
+            for (int i = 0; i < _size; i++)
+            {
+                key[i] = Int32.MaxValue;
+                visited[i] = false;
+            }
+
+            key[0] = 0;
+            parent[0] = -1;
+
+            for (int i = 0; i < _size - 1; i++)
+            {
+                int minInd = MinDistance(key, visited);
+                visited[minInd] = true;
+
+                for (int j = 0; j < _size; j++)
+                {
+                    if (matrix[minInd, j] != 0 && visited[j] == false && matrix[minInd, j] < key[j])
+                    {
+                        parent[j] = minInd;
+                        key[j] = matrix[minInd, j];
+                    }
+                }
+            }
+            
+            for (int i = 1; i < _size; i++)
+            {
+                Console.WriteLine($"Edge [{parent[i]}, {i}] with weight: {matrix[i, parent[i]]}");
             }
         }
     }

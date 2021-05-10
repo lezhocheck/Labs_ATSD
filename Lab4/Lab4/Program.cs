@@ -26,18 +26,10 @@ namespace Lab4
                         graph.AddEdge(i, j, val);
                 }
             }
-
-            List<Edge> edges = graph.Kruskal();
-            int totalWeight = 0;
-            Console.WriteLine("Kruskal:");
-            foreach (var edge in edges)
-            {
-                Console.WriteLine($"Edge [{edge.Vertex}, {edge.AdjacentVertex}] with weight: {edge.Weight}");
-                totalWeight += edge.Weight;
-            }
-            Console.WriteLine($"MST weight: {totalWeight}");
-            
+            graph.Print();
+            graph.Kruskal();
             graph.Dijkstra(0);
+            graph.Prim();
         }
     }
 }
