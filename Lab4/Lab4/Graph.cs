@@ -23,8 +23,6 @@ namespace Lab4
         private int _size;
         private List<Edge> _edges;
 
-        private int[] _parent;
-
         public Graph(int size)
         {
             _size = size;
@@ -44,62 +42,112 @@ namespace Lab4
                 Console.WriteLine($"Edge [{edge.Vertex}, {edge.AdjacentVertex} with weight: {edge.Weight}]");
         }
 
-        
-        private int Find(int i)
-        {
-            while (_parent[i] != i)
-                i = _parent[i];
-            return i;
-        }
-        
-        private void Union(int i, int j)
-        {
-            int a = Find(i);
-            int b = Find(j);
-            _parent[a] = b;
-        }
-        
         public List<Edge> Kruskal()
         {
             _edges.Sort((x, y) => x.Weight.CompareTo(y.Weight));
             
-            _parent = new int[_size];
+            int[] parent = new int[_size];
             
             for (int i = 0; i < _size; i++)
-                _parent[i] = i;
+                parent[i] = i;
             
             List<Edge> tree = new List<Edge>();
             foreach (var edge in _edges)
             {
-                int startNodeRoot = FindRoot(edge.Vertex);
-                int endNodeRoot = FindRoot(edge.AdjacentVertex);
+                int startNodeRoot = FindRoot(parent, edge.Vertex);
+                int endNodeRoot = FindRoot(parent, edge.AdjacentVertex);
  
                 if (startNodeRoot != endNodeRoot)
                 {
                     tree.Add(edge);
-                    _parent[endNodeRoot] = startNodeRoot;
+                    parent[endNodeRoot] = startNodeRoot;
                 }
             }
             
             return tree;
         }
  
-        private int FindRoot(int node)
+        private int FindRoot(int[] parent, int node)
         {
             var root = node;
-            while (root != _parent[root])
+            while (root != parent[root])
             {
-                root = _parent[root];
+                root = parent[root];
             }
  
             while (node != root)
             {
-                var oldParent = _parent[node];
-                _parent[node] = root;
+                var oldParent = parent[node];
+                parent[node] = root;
                 node = oldParent;
             }
  
             return root;
+        }
+
+        private int MinDistance(int[] distance, bool[] visited)
+        {
+            int min = Int32.MaxValue;
+            int minIndex = 0;
+
+            for (int i = 0; i < _size; i++)
+            {
+                if (visited[i] == false && distance[i] <= min)
+                {
+                    min = distance[i];
+                    minIndex = i;
+                }
+            }
+
+            return minIndex;
+        }
+
+        private int[,] To2dArray()
+        {
+            int[,] arr = new int[_size, _size];
+
+            foreach (var e in _edges)
+            {
+                arr[e.Vertex, e.AdjacentVertex] = e.Weight;   
+                arr[e.AdjacentVertex, e.Vertex] = e.Weight;
+            }
+
+            return arr;
+        }
+        public void Dijkstra(int start)
+        {
+            int[] distance = new int[_size];
+            bool[] visited = new bool[_size];
+            int[,] matrix = To2dArray();
+
+            for (int i = 0; i < _size; i++)
+            {
+                distance[i] = Int32.MaxValue;
+                visited[i] = false;
+            }
+
+            distance[start] = 0;
+
+            for (int i = 0; i < _size - 1; i++)
+            {
+                int minInd = MinDistance(distance, visited);
+                visited[minInd] = true;
+
+                
+                for (int j = 0; j < _size; j++)
+                {
+                    if (!visited[j] && matrix[minInd, j] != 0 && distance[minInd] != Int32.MaxValue &&
+                        distance[minInd] + matrix[minInd, j] < distance[j])
+                    {
+                        distance[j] = distance[minInd] + matrix[minInd, j];
+                    }   
+                }
+            }
+
+            for (int i = 0; i < _size; i++)
+            {
+                Console.WriteLine($"Smallest path from {start} to {i} is: {distance[i]}");
+            }
         }
     }
 }

@@ -36,6 +36,8 @@ namespace Lab4
                 totalWeight += edge.Weight;
             }
             Console.WriteLine($"MST weight: {totalWeight}");
+            
+            graph.Dijkstra(0);
         }
     }
 }
