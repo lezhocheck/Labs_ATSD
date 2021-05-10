@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Lab4
 {
@@ -10,14 +11,31 @@ namespace Lab4
             int size = Convert.ToInt32(Console.ReadLine());
 
             Graph graph = new Graph(size);
-            graph.AddEdge(0, 2, 5);
-            graph.AddEdge(0, 4, 3);
-            graph.AddEdge(1, 0, 9);
-            graph.AddEdge(2, 1, 15);
-            graph.AddEdge(3, 2, 92);
-            graph.AddEdge(3, 1, 4);
-            graph.AddEdge(4, 3, 8);
-            graph.Print();
+
+            Console.WriteLine("Enter graph edges. If edge is absent enter '0'.");
+            
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if(i == j) continue;
+                    
+                    Console.Write($"Enter [{i}, {j}] edge weight: ");
+                    int val = Convert.ToInt32(Console.ReadLine());
+                    if(val != 0)
+                        graph.AddEdge(i, j, val);
+                }
+            }
+
+            List<Edge> edges = graph.Kruskal();
+            int totalWeight = 0;
+            Console.WriteLine("Kruskal:");
+            foreach (var edge in edges)
+            {
+                Console.WriteLine($"Edge [{edge.Vertex}, {edge.AdjacentVertex}] with weight: {edge.Weight}");
+                totalWeight += edge.Weight;
+            }
+            Console.WriteLine($"MST weight: {totalWeight}");
         }
     }
 }
