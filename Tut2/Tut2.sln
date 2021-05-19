@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tut2", "Tut2\Tut2.csproj", "{0249DA7C-7FBB-4217-840C-CCD12A6262BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0249DA7C-7FBB-4217-840C-CCD12A6262BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0249DA7C-7FBB-4217-840C-CCD12A6262BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0249DA7C-7FBB-4217-840C-CCD12A6262BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0249DA7C-7FBB-4217-840C-CCD12A6262BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
