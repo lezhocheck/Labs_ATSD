@@ -54,6 +54,53 @@ namespace Lab5
                 Count--;
             }
         }
+
+        public void Separate()
+        {
+            int nextPrimeIndex = 0;
+
+            for (int i = 0; i < Count; i++)
+            {
+                if (IsPrime(_array[i]))
+                {
+                    Swap(ref _array[i], ref _array[nextPrimeIndex]);
+                    nextPrimeIndex++;
+                }
+            }
+        }
+
+        private void Swap(ref int a, ref int b)
+        {
+            int t = a;
+            a = b;
+            b = t;
+        }
+        
+        private bool IsPrime(int value)
+        {
+            if (value == 2 || value == 3)
+            {
+                return true;
+            } 
+            else if (value <= 1 || value % 2 == 0 || value % 3 == 0)
+            {
+                return false;
+            }
+            
+            int i = 5;
+            
+            while (Math.Pow(i, 2) <= value)
+            {
+                if (value % i == 0)
+                {
+                    return false;
+                }
+
+                i += 6;
+            }
+
+            return true;
+        }
         
         private int Search(int value)
         {

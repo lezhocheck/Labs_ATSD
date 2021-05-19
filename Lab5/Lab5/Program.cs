@@ -8,13 +8,14 @@ namespace Lab5
         {
             UnsortedArrayList list = new UnsortedArrayList();
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 25; i++)
             {
                 list.Add(i);
             }
-            list.Add(5);
             
-            list.Delete(5);
+            list.Print(); 
+            list.Delete(9);
+            list.Separate();
             list.Print(); 
         }
     }
