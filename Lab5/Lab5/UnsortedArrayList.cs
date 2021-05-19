@@ -1,4 +1,6 @@
-﻿namespace Lab5
+﻿using System;
+
+namespace Lab5
 {
     public class UnsortedArrayList
     {
@@ -26,8 +28,54 @@
                 DoubleCapacity();
             }
             
-            _array[Count - 1] = value;
+            _array[Count] = value;
             Count++;
+        }
+
+        public void Delete(int value)
+        {
+            int index = Search(value);
+            
+            if (index != -1)
+            {
+                int[] newArr = new int[_array.Length - 1];
+                
+                for (int i = 0; i < index; i++)
+                {
+                    newArr[i] = _array[i];
+                }
+
+                for (int i = index + 1; i < Count; i++)
+                {
+                    newArr[i - 1] = _array[i];
+                }
+
+                _array = newArr;
+                Count--;
+            }
+        }
+        
+        private int Search(int value)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (_array[i] == value)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        public void Print()
+        {
+            for(int i = 0; i < Count; i++)
+            {
+                Console.Write($"{_array[i]} ");
+            }
+            
+            Console.WriteLine();
         }
 
         private void DoubleCapacity()
